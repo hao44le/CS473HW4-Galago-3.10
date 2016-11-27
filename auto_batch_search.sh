@@ -1,5 +1,5 @@
 #!/bin/sh
-cd ~/Downloads/lemur-galago
+cd ~/Downloads/galago-3.10
 core/target/appassembler/bin/galago batch-search --index=CS473HW/cacm-index CS473HW/cacm.queryHW4.json --scorer=tf > CS473HW/outputTF.txt
 echo "done with TF"
 
@@ -19,7 +19,7 @@ core/target/appassembler/bin/galago batch-search --index=CS473HW/cacm-index CS47
 echo "done with JM"
 
 
-replace "/Users/geleichen/Downloads/galago-3.10-bin/cacm/" "" -- CS473HW/outputTF.txt CS473HW/outputTFIDF.txt CS473HW/outputLogTFIDF.txt CS473HW/outputCosine.txt CS473HW/outputBM25.txt CS473HW/outputJM.txt
+replace "/Users/geleichen/Downloads/galago-3.10/CS473HW/cacm/" "" -- CS473HW/outputTF.txt CS473HW/outputTFIDF.txt CS473HW/outputLogTFIDF.txt CS473HW/outputCosine.txt CS473HW/outputBM25.txt CS473HW/outputJM.txt
 replace ".html" "" -- CS473HW/outputTF.txt CS473HW/outputTFIDF.txt CS473HW/outputLogTFIDF.txt CS473HW/outputCosine.txt CS473HW/outputBM25.txt CS473HW/outputJM.txt
 
 core/target/appassembler/bin/galago eval --judgments=CS473HW/cacm.rel --runs+CS473HW/outputTF.txt --metrics+map --metrics+ndcg --metrics+P3 > CS473HW/result.txt
