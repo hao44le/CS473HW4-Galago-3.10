@@ -61,9 +61,8 @@ public class CombinationCosineOperator extends DisjunctionIterator implements Sc
           // System.out.println(" continue,score is:"+scoreIterators[i].score(c));
           continue;
         }else{
-          // System.out.println(" add score");
           set.add(query);
-          freqOfWordInQuery = table.get(query) / (double)scoreIterators.length;
+          freqOfWordInQuery = table.get(query);
           double score_top = scoreIterators[i].score(c) * freqOfWordInQuery;
           double score_bottom= scoreIterators[i].score(c)*scoreIterators[i].score(c)*freqOfWordInQuery*freqOfWordInQuery;
           total_top += score_top;
