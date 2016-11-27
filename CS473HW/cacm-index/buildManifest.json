@@ -1,0 +1,42 @@
+{
+  "corpus" : true,
+  "corpusParameters" : {
+    "blockSize" : 512,
+    "filename" : "/Users/geleichen/Downloads/galago-3.10/CS473HW/cacm-index/corpus",
+    "mergerClass" : "org.lemurproject.galago.core.index.merge.CorpusMerger",
+    "readerClass" : "org.lemurproject.galago.core.index.corpus.CorpusReader",
+    "tokenizer" : {
+      "fields" : [ ],
+      "formats" : {
+
+      }
+    },
+    "writerClass" : "org.lemurproject.galago.core.index.corpus.CorpusFolderWriter"
+  },
+  "fieldIndex" : false,
+  "fieldIndexParameters" : {
+    "nonStemmedPostings" : true,
+    "stemmedPostings" : true,
+    "stemmer" : [ "krovetz"]
+  },
+  "galagoVersion" : "3.10",
+  "galagoVersionBuildDateTime" : "2016-11-27 16:20",
+  "indexBuildDateTime" : "2016-11-27 11:22",
+  "indexPath" : "/Users/geleichen/Downloads/galago-3.10/CS473HW/cacm-index",
+  "inputPath" : [ "/Users/geleichen/Downloads/galago-3.10/CS473HW/cacm"],
+  "nonStemmedPostings" : true,
+  "skipDistance" : 500,
+  "skipping" : true,
+  "stemmedCounts" : false,
+  "stemmedPostings" : true,
+  "stemmer" : [ "krovetz"],
+  "stemmerClass" : {
+    "krovetz" : "org.lemurproject.galago.core.parse.stem.KrovetzStemmer"
+  },
+  "tokenizer" : {
+    "fields" : [ ],
+    "formats" : {
+
+    }
+  }
+}
