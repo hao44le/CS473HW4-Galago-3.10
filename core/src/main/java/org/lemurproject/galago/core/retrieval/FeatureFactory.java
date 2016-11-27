@@ -77,6 +77,14 @@ public class FeatureFactory {
     {BiL2ScoringIterator.class.getName(), "bil2"},
     {LogCountIterator.class.getName(), "log-count"},
 
+    // scoring function added by Gelei
+    {TFScoringIterator.class.getName(), "tf"},
+    {CombinationTFOperator.class.getName(), "ctf"},
+    {TFIDFScoringIterator.class.getName(), "tfidf"},
+    {LogTFIDFScoringIterator.class.getName(), "logtfidf"},
+    {CosineScoringIterator.class.getName(), "cosine"},
+    {CombinationCosineOperator.class.getName(), "ccosine"},
+
     // indicator iterators
     {UniversalIndicatorIterator.class.getName(), "all"},
     {UniversalIndicatorIterator.class.getName(), "band"},
@@ -387,13 +395,13 @@ public class FeatureFactory {
           throws ClassNotFoundException, NoSuchMethodException, InstantiationException,
           IllegalAccessException, IllegalArgumentException, InvocationTargetException {
     ArrayList<Traversal> result = new ArrayList<>();
-    
+
     for (TraversalSpec spec : traversals) {
       Class<? extends Traversal> traversalClass =
               (Class<? extends Traversal>) Class.forName(spec.className);
       Constructor[] constructors = traversalClass.getConstructors();
       Traversal traversal = null;
-      
+
       // try to construct a traversal with a retrieval
       for (Constructor c : constructors) {
         Class<?>[] argTypes = c.getParameterTypes();
@@ -402,7 +410,7 @@ public class FeatureFactory {
           break;
         }
       }
-      
+
       // allow a traversal with no retrieval
       if(traversal == null) {
         for(Constructor c : constructors) {
@@ -413,7 +421,7 @@ public class FeatureFactory {
           }
         }
       }
-      
+
       if(traversal == null) {
         throw new IllegalArgumentException("Traversals should have obvious constructors, failed on: " + traversalClass);
       }
