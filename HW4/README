@@ -1,0 +1,12 @@
+My overall strategies:
+	* For each of the scoring function, there is a corresponding XXScoringIterator.java file.
+	* For TF,TFIDF and LogTFIDF, I create a custom combination operator named 'CombinationTFOperator.java' to combine all the results of each word in a query.
+	* For Cosine, I create a custom combination operator named 'CombinationCosineOperator.java' to combine all the results of each word in a query. The formula in cosine is different from other formulas.
+	* I also create a shell script('auto_batch_search.sh') to automate all my testing process.
+	* I modify JSONQueryFormat.java file to provide a custom combination operator for each of my scoring function.
+	* According to professor discussion on piazza, if I encounter idf=0 on TFIDF,LogTFIDF, I will return -1 as the score.
+
+
+Thanks for giving such homework. Galago is a complicated system, and I enjoy investigate it. 
+
+
