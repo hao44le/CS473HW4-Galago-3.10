@@ -20,6 +20,7 @@ public class CombinationTFOperator extends DisjunctionIterator implements ScoreI
 
   NodeParameters np;
   protected ScoreIterator[] scoreIterators;
+  //table contains frequency of word in a query.
   private HashSet<String> table;
 
   public CombinationTFOperator(NodeParameters parameters,
@@ -39,12 +40,12 @@ public class CombinationTFOperator extends DisjunctionIterator implements ScoreI
     for (int i = 0; i < scoreIterators.length; i++) {
       try{
         String query = scoreIterators[i].getAnnotatedNode(new ScoringContext()).children.get(1).parameters;
-        // System.out.print("query:"+query);
+
         if(table.contains(query)||query.equals("")){
-          // System.out.println(" continue,score is:"+scoreIterators[i].score(c));
+
           continue;
         }else{
-          // System.out.println(" add score");
+
           table.add(query);
           double score = scoreIterators[i].score(c);
           total += score;
@@ -54,7 +55,7 @@ public class CombinationTFOperator extends DisjunctionIterator implements ScoreI
       }
       
     }
-    // System.out.println("table:"+table);
+
     this.table.clear();
     return total;
   }

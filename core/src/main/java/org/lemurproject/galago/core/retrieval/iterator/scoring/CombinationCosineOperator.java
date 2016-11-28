@@ -21,6 +21,7 @@ public class CombinationCosineOperator extends DisjunctionIterator implements Sc
 
   NodeParameters np;
   protected ScoreIterator[] scoreIterators;
+  //set to identify duplicate elements
   private HashSet<String> set;
 
   public CombinationCosineOperator(NodeParameters parameters,
@@ -38,6 +39,8 @@ public class CombinationCosineOperator extends DisjunctionIterator implements Sc
   public double score(ScoringContext c) {
     double total_top = 0;
     double total_bottom = 0;
+
+    //table contains frequency of word in a query.
     Hashtable<String,Integer> table = new Hashtable<String,Integer>();
     for (int i = 0; i < scoreIterators.length; i++) {
       try{
@@ -51,14 +54,13 @@ public class CombinationCosineOperator extends DisjunctionIterator implements Sc
         System.err.println("Caught IOException: " + e.getMessage());
       }
     }
-    // System.out.println("table:"+table);
+
+    //loop through every score again to calculate final score for the whole query.
     for (int i = 0; i < scoreIterators.length; i++) {
       double freqOfWordInQuery = 1.0;
       try{
         String query = scoreIterators[i].getAnnotatedNode(new ScoringContext()).children.get(1).parameters;
-        // System.out.print("query:"+query);
         if(set.contains(query)||query.equals("")){
-          // System.out.println(" continue,score is:"+scoreIterators[i].score(c));
           continue;
         }else{
           set.add(query);
@@ -72,9 +74,10 @@ public class CombinationCosineOperator extends DisjunctionIterator implements Sc
       }catch (IOException e){
         System.err.println("Caught IOException: " + e.getMessage());
       }
-      this.set.clear();
+      
       
     }
+    this.set.clear();
     return total_top / Math.sqrt(total_bottom);
   }
 
